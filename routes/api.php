@@ -14,6 +14,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+Route::get('cat' , 'CategoryController@index');
+Route::get('cat/{id}' , 'CategoryController@show');
+Route::post('cat' , 'CategoryController@store');
+Route::put('cat/{id}' , 'CategoryController@update');
+Route::delete('cat/{id}' , 'CategoryController@delete');
