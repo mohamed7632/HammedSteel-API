@@ -16,6 +16,12 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('cat' , 'CategoryController@index');
 Route::get('cat/{id}' , 'CategoryController@show');
-Route::post('cat' , 'CategoryController@store');
+Route::post('cat/store' , 'CategoryController@store');
 Route::put('cat/{id}' , 'CategoryController@update');
 Route::delete('cat/{id}' , 'CategoryController@delete');
+//-----------  item  --------------------
+
+route::get('/items/{cat_id}','ItemController@showItems');
+route::post('/items/store','ItemController@storeItems');
+Route::get('/items/{item_id}/{price}' , 'ItemController@update');
+Route::get('/items/delete/{id}' , 'ItemController@delete');
