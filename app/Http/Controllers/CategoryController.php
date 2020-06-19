@@ -38,7 +38,7 @@ class CategoryController extends Controller
                     where('id', $id)
                     ->update($request->all());;
     }
-    public function delete(Request $request,$id)
+    public function delete($id)
     {
         $cat  = Category::findOrFail($id);
         $cat->delete();

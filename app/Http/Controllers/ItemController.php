@@ -7,8 +7,8 @@ use App\Item;
 class ItemController extends Controller
 {
     public function showItems($cat_id){
-    $data['items']=item::where('category_id',$cat_id)->get();
-    return response()->json( [$data] );
+    $item=item::where('category_id',$cat_id)->get();
+    return $item->toJson();
     
     }
   
