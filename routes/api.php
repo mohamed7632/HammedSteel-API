@@ -20,7 +20,7 @@ Route::get('cat/store/{name}' , 'CategoryController@store');
 Route::get('cat/update/{id}' , 'CategoryController@update');
 Route::get('cat/delete/{id}' , 'CategoryController@delete');
 
-route::get('/items/{cat_id}','ItemController@showItems');
-route::post('/items/store','ItemController@storeItems');
+Route::get('/items/{cat_id}','ItemController@showItems');
+Route::post('/items/store','ItemController@storeItems');
 Route::get('/items/{item_id}/{price}' , 'ItemController@update');
 Route::get('/items/delete/{id}' , 'ItemController@delete');
