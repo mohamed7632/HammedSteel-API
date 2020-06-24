@@ -16,16 +16,17 @@ class CategoryController extends Controller
     public function show($id){
         return Category::find($id);
     }
-    public function store(Request $request ){
+    public function store($name){
         $v=[
-            'name' => $request->name
+            'name' => $name
         ];
-        $cat = new Category();   
-        $cat->name = $v['name'];
-        $cat->save();
-        // $validator = \validator::make($v, [
-        //     'name' => 'required|unique:categories'
-        // ]);
+        $cat = Category::where('name',$name)->get();
+        if(sizeof($cat)==0){
+            $cat = new Category();
+            $cat->name = $name;
+            $cat->save();
+        }
+        
         //  if($validator){
         //     echo "welcome";
         //     $cat = new Category();   

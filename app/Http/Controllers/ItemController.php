@@ -29,11 +29,17 @@ class ItemController extends Controller
     
 
    }
-   public function update( $Item_id,$price){
+   
+   public function updatenumber( $ItemID,$number){
+     $data = item::find($ItemID);
+            $x['number']=$data->number - $number;
+            item::where('id', $ItemID )->update($x);
+     }
+   public function updateprice( $Item_id,$price){
     $data = item::find($Item_id);
            $x['price']=$price;
            item::where('id', $Item_id )->update($x);
-         }
+     }
 
     public function delete($id)
      {
@@ -44,6 +50,11 @@ class ItemController extends Controller
        // DB::table('items')->delete($id);
             // $data  = item::find($id);
             // $data->delete();
+     }
+     public function getItem($id){
+          $data = item::find($id);
+          return $data->toJson();
+
      }
 
 
