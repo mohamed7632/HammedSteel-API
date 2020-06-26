@@ -20,13 +20,13 @@ class CategoryController extends Controller
         $v=[
             'name' => $name
         ];
-        echo "welcome";
-        $cat = new Category();   
-        $cat->name = $name;
-        $cat->save();
-        // $validator = \validator::make($v, [
-        //     'name' => 'required|unique:categories'
-        // ]);
+        $cat = Category::where('name',$name)->get();
+        if(sizeof($cat)==0){
+            $cat = new Category();
+            $cat->name = $name;
+            $cat->save();
+        }
+        
         //  if($validator){
         //     echo "welcome";
         //     $cat = new Category();   
@@ -39,7 +39,7 @@ class CategoryController extends Controller
                     where('id', $id)
                     ->update($request->all());;
     }
-    public function delete(Request $request,$id)
+    public function delete($id)
     {
         $cat  = Category::findOrFail($id);
         $cat->delete();

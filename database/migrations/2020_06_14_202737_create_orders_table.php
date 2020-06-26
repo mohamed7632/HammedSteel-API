@@ -18,6 +18,7 @@ class CreateOrdersTable extends Migration
             $table->string('customer_name');
             $table->float('total_price');
             $table->float('paid');
+            $table->string('paidBy');
             $table->timestamps();
         });
     }

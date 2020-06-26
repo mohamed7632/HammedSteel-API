@@ -2,22 +2,46 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+
 use App\Order;
-use App\Item;
+use Illuminate\Http\Request;
+
 class OrderController extends Controller
 {
-    function getOrder($order_id){
-         $order=Order::find($order_id)->items()->get();
-        // $items=$order->with('items')->get();
-    //    $items=Order::find($order_id)->items->get();
-    //   $items=Order::with('items')->first();        
-        return $order->toJson();
-
+    //
+    public function makeOrder($username , $totalPrice , $paid , $paidBy){
+            $order = new Order();
+            $order->customer_name = $username;
+            $order->total_price = $totalPrice;
+            $order->paid = $paid;
+            $order->paidBy = $paidBy;
+            $order->save();
+            return $order->toJson();
     }
-    function getAllOrder(){
-        $data=Order::get();
-        return response()->json( [$data] );
+    function getOrders(){
+        $orders =  Order::all();
+        return $orders->toJson();
+    }
+    function updateOrder($id , $paid){
+        $x['paid']=$paid;
+        Order::where('id', $id )->update($x);
+    }
+    public function delete($id)
+    {
+        $order  = Order::findOrFail($id);
+        $order->delete();
+    }
+    public function deleteItem($id ,$price){
+        $order = Order::findOrFail($id);
+        if($order->total_price >= $price){
+            $x['total_price'] = $order->total_price - $price;
+            if($order->paid >= $price){
+                $x['paid'] = $order->paid - $price;
+            }
+            Order::where('id',$id)->update($x);
+        }
+
+          
 
     }
 }
