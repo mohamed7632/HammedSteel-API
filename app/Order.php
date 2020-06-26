@@ -7,7 +7,7 @@ use App\Item;
 class Order extends Model
 {
     protected $gaurded=['id'];
-    public function order(){
-        return $this->belongsToMany('App\Item');
+    public function items(){
+        return $this->belongsToMany('App\Item','order_item');
     }
 }
