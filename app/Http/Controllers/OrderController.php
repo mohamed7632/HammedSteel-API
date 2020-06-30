@@ -23,7 +23,8 @@ class OrderController extends Controller
         return $orders->toJson();
     }
     function updateOrder($id , $paid){
-        $x['paid']=$paid;
+        $order = Order::findOrFail($id);
+        $x['paid']=$paid + $order->paid;
         Order::where('id', $id )->update($x);
     }
     public function delete($id)

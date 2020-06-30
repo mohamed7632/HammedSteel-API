@@ -17,6 +17,7 @@ class CreateTransactionsTable extends Migration
             $table->id();
             $table->string('name');
             $table->float('paid');
+            $table->string('paidBy');
             $table->timestamps();
         });
     }
