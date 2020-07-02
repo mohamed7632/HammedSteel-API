@@ -29,7 +29,7 @@ Route::get('/items/update_price/{itemID}/{price}' , 'ItemController@updateprice'
 Route::get('/items/delete/{id}' , 'ItemController@delete');
 
 //--------------transaction------------------------
-Route::get('/transaction/save/{name}/{paid}/{paidBy}','CustomerTransaction@addNewTransaction');
+Route::get('/transaction/save/{name}/{paid}/{paidBy}/{type}','CustomerTransaction@addNewTransaction');
 Route::get('/transaction/display','CustomerTransaction@displayTransaction');
 //---------------------orders-----------------------
 Route::get('/order/{username}/{totalPrice}/{paid}/{paidBy}','OrderController@makeOrder');
@@ -43,4 +43,10 @@ Route::get('/save/{itemID}/{itemName}/{orderID}/{price}/{numberOfItems}','OrderI
 Route::get('/order_item','OrderItemController@getAllItem');
 Route::get('/item_order/{orderID}','OrderItemController@getByOrder');
 Route::get('/delete_item_order/{id}','OrderItemController@deleteItem');
+
+//-------------------------Account-------------------------
+
+Route::get('/account/{name}/{money}/{type}','AccountController@add');
+Route::get('/account/update/{name}/{money}/{type}','AccountController@update');
+
 
