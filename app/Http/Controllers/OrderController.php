@@ -19,11 +19,12 @@ class OrderController extends Controller
             return $order->toJson();
     }
     function getOrders(){
-        $orders =  Order::all();
+        $orders =  Order::orderBy('id','desc')->get();
         return $orders->toJson();
     }
     function updateOrder($id , $paid){
-        $x['paid']=$paid;
+        $order = Order::findOrFail($id);
+        $x['paid']=$paid + $order->paid;
         Order::where('id', $id )->update($x);
     }
     public function delete($id)

@@ -6,20 +6,18 @@ use Illuminate\Http\Request;
 use App\Transaction;
 class CustomerTransaction extends Controller
 {
-    public function addNewTransaction(Request $request){
-        $data=$request->validate([
-            'name'=>'required|string|max:191',
-            'paid'=>'numeric'
-        ]);
+    public function addNewTransaction($name , $paid , $paidBy , $type){
         $obj=new Transaction();
         
-        $obj->name=$data['name'];
-        $obj->paid=$data['paid'];
+        $obj->name=$name;
+        $obj->paid=$paid;
+        $obj->paidBy = $paidBy;
+        $obj->type = $type;
         $obj->save();
 
     }
-    public function displayTransaction($name){
-       $data['transaction']=Transaction::where('name',$name)->get();
-       return response()->json( [$data] ); 
+    public function displayTransaction(){
+       $data=Transaction::orderBy('id','desc')->get();
+       return $data->toJson(); 
     }
 }

@@ -20,7 +20,7 @@ class OrderItemController extends Controller
                
     }
     function getAllItem(){
-        $order_item =  OrderItem::all();
+        $order_item =  OrderItem::orderBy('id','desc')->get();
         return $order_item->toJson();
     }
     function getByOrder($orderID){

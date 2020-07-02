@@ -12,21 +12,13 @@ class ItemController extends Controller
     
     }
   
-  public function storeItems(request $request){
-    $data=$request->validate([
-         'category_id'=>'required',
-         'name' =>'required|string|max:191',
-         'price' =>'required|numeric'
-    ]);
-  
-    
+  public function storeItems($cat_id , $name , $number , $price){
         $item=new Item();
-        $item->category_id=$request->category_id;
-        $item->item_name=$request->name;
-        $item->price=$request->price;
+        $item->category_id=$cat_id;
+        $item->item_name=$name;
+        $item->price=$price;
+        $item->number = $number;
         $item->save();  
-      
-    
 
    }
    
@@ -36,7 +28,6 @@ class ItemController extends Controller
             item::where('id', $ItemID )->update($x);
      }
    public function updateprice( $Item_id,$price){
-    $data = item::find($Item_id);
            $x['price']=$price;
            item::where('id', $Item_id )->update($x);
      }
