@@ -19,7 +19,7 @@ class OrderController extends Controller
             return $order->toJson();
     }
     function getOrders(){
-        $orders =  Order::all();
+        $orders =  Order::orderBy('id','desc')->get();
         return $orders->toJson();
     }
     function updateOrder($id , $paid){
