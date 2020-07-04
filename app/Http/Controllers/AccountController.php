@@ -20,9 +20,7 @@ class AccountController extends Controller
         }
         else{
             $account = Account::where(['name' => $name,'type' => $type])->get();
-            
-            $x['money'] = $money + $account->money;
-            $account = Account::where('id',1)->update($x);
+            dd($account);
             
 
         }
