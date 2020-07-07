@@ -45,4 +45,8 @@ class OrderController extends Controller
           
 
     }
+    function getAllPaid(){
+        $order = Order::sum('paid');
+        return json_encode($order);
+    }
 }

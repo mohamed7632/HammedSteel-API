@@ -11,22 +11,13 @@ class OrderSeeder extends Seeder
      */
     public function run()
     {
+       for($i  = 0 ; $i < 10000 ; $i++){
         Order::create([
-          'customer_name'=>'mohamed sherif',
-          'total_price'=>'6500.55',
-          'paid'=>'6000.55'
-        ]);
-        
-        Order::create([
-            'customer_name'=>'mahmoud saeed',
-            'total_price'=>'84200',
-            'paid'=>'84000'
-          ]);
-          
-        Order::create([
-            'customer_name'=>'mohamed magdy',
-            'total_price'=>'4001.55',
-            'paid'=>'3000.55'
-          ]);
+          'customer_name'=>'mahmoud',
+          'total_price'=>500,
+          'paid'=> 100,
+          'paidBy'=>'bank'
+      ]);
+       }
     }
 }
