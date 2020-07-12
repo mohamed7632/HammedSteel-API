@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Item;
 use App\OrderItem;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class OrderItemController extends Controller
 {
@@ -30,6 +31,13 @@ class OrderItemController extends Controller
     function deleteItem($id){
         $item  = OrderItem::findOrFail($id);
         $item->delete();
+        return $item->toJson();
 
+    }
+    function getBest(){
+        $best = OrderItem::select("itemName", DB::Raw("SUM(numberOfItems) AS best_total"))
+        ->groupBy('itemName')->orderBy('best_total','desc')
+        ->get();
+        return $best;
     }
 }

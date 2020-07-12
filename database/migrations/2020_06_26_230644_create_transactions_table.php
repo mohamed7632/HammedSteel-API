@@ -17,6 +17,7 @@ class CreateTransactionsTable extends Migration
             $table->id();
             $table->string('name');
             $table->float('paid');
+            $table->float('remaining');
             $table->string('paidBy');
             $table->string('type');
             $table->timestamps();
