@@ -8,3 +8,4 @@ class Account extends Model
 {
   protected$fillable =['name','money','type'];
   
+}
