@@ -46,6 +46,7 @@ Route::get('/save/{itemID}/{itemName}/{orderID}/{price}/{numberOfItems}','OrderI
 Route::get('/order_item','OrderItemController@getAllItem');
 Route::get('/item_order/{orderID}','OrderItemController@getByOrder');
 Route::get('/delete_item_order/{id}','OrderItemController@deleteItem');
+Route::get('/get_best','OrderItemController@getBest');
 
 //-------------------------Account-------------------------
 
