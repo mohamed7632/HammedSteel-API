@@ -32,7 +32,7 @@ Route::get('/items/delete/{id}' , 'ItemController@delete');
 //--------------transaction------------------------
 Route::get('/transaction/save/{name}/{paid}/{remaining}/{paidBy}/{type}','CustomerTransaction@addNewTransaction');
 Route::get('/transaction/display/{type}','CustomerTransaction@displayTransaction');
-Route::get('/transaction/name/{name}','CustomerTransaction@getTrans');
+Route::get('/transaction/name/{name}/{from}/{to}','CustomerTransaction@getTrans');
 //---------------------orders-----------------------
 Route::get('/order/{username}/{totalPrice}/{paid}/{paidBy}','OrderController@makeOrder');
 Route::get('/orders','OrderController@getOrders');

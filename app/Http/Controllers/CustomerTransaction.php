@@ -21,8 +21,10 @@ class CustomerTransaction extends Controller
        $data=Transaction::where('type',$type)->orderBy('id','desc')->get();
        return $data->toJson(); 
     }
-    function getTrans($name){
-       $trans = Transaction::where('name',$name)->where('type',0)->orderBy('id','desc')->get();
+    function getTrans($name , $from , $to){
+       $trans = Transaction::where('name',$name)->where('type',0)
+        ->whereBetween('created_at', [$from." 00:00:00", $to." 23:59:59"])
+        ->orderBy('id','desc')->get();
        return $trans->toJson(); 
     }
 }
